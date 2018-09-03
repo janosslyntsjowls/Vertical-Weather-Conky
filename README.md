@@ -22,7 +22,7 @@ HOW TO INSTALL
 
 2. Download WeatherIcons and MoonIcons. If you do not already have a $USER/Pictures/Icons/ folder, create one and place these folders there. Otherwise, you can edit the code to point to their location.
 
-3. Place updateWeather.sh and getMoonPhase.sh in your preferred folder. 
+3. If you do not already have a Scripts folder, create one in your home folder. In that folder, create a folder called Weather. Place updateWeather.sh and getMoonPhase.sh there (/home/$USER/Scripts/Weather).
 
     3.a. Open updateWeather.sh. Find [API KEY] and replace it with your Wunderground API key.
 
