@@ -1,5 +1,7 @@
 Vertical Weather Conky
 
+![Screenshot](https://github.com/theMountainThatOverrides/Vertical-Weather-Conky/blob/master/Screenshot.png)
+
 You will need:
 
 a. A Weather Underground API key. Unfortunately they are not offering them for free anymore. Any xml document that can be downloaded with curl can be used. The xml mappings in the xmlstarlet code snippets will just need to be changed. Open Weather Map has free xml weather updates for many cities.
