@@ -1,0 +1,98 @@
+
+FORECAST:
+http://api.wunderground.com/api/[Wunderground API Key]/forecast/q/[Zip Code].xml
+
+update 1p from "sed -n '1p'" to 2, 3, 4p to get the 2nd, 3rd, 4th periods (days)
+
+Period #: xmlstarlet sel -t -v "response/forecast/simpleforecast/forecastdays/forecastday/period" forecast.xml | sed -n '1p' 
+(1p - 4p)
+
+(Numbers)
+Day: xmlstarlet sel -t -v "response/forecast/simpleforecast/forecastdays/forecastday/date/day" /home/$USER/forecast.xml | sed -n '1p'
+Month: xmlstarlet sel -t -v "response/forecast/simpleforecast/forecastdays/forecastday/date/month" /home/$USER/forecast.xml | sed -n '1p'
+Year: xmlstarlet sel -t -v "response/forecast/simpleforecast/forecastdays/forecastday/date/year" /home/$USER/forecast.xml | sed -n '1p'
+Month name: xmlstarlet sel -t -v "response/forecast/simpleforecast/forecastdays/forecastday/date/monthname" /home/$USER/forecast.xml | sed -n '1p'
+Month name short: xmlstarlet sel -t -v "response/forecast/simpleforecast/forecastdays/forecastday/date/monthname_short" /home/$USER/forecast.xml | sed -n '1p'
+Weekday: xmlstarlet sel -t -v "response/forecast/simpleforecast/forecastdays/forecastday/date/weekday" /home/$USER/forecast.xml | sed -n '1p'
+Weekday short: xmlstarlet sel -t -v "response/forecast/simpleforecast/forecastdays/forecastday/date/weekday_short" /home/$USER/forecast.xml | sed -n '1p'
+
+[for the day]
+Propability of Precipitation: xmlstarlet sel -t -v "response/forecast/simpleforecast/forecastdays/forecastday/pop" /home/$USER/forecast.xml | sed -n '1p'
+High Temp:  xmlstarlet sel -t -v "response/forecast/simpleforecast/forecastdays/forecastday/high/fahrenheit" /home/$USER/forecast.xml | sed -n '1p'
+Low Temp: xmlstarlet sel -t -v "response/forecast/simpleforecast/forecastdays/forecastday/low/fahrenheit" /home/$USER/forecast.xml | sed -n '1p'
+Conditions: xmlstarlet sel -t -v "response/forecast/simpleforecast/forecastdays/forecastday/conditions" /home/$USER/forecast.xml | sed -n '1p'
+Avg Humidity: xmlstarlet sel -t -v "response/forecast/simpleforecast/forecastdays/forecastday/avehumidity" /home/$USER/forecast.xml | sed -n '1p'
+
+[text has different periods!] Sed goes up to 8!
+Forecast Text Period Name:
+Forecast Text: xmlstarlet sel -t -v "response/forecast/txt_forecast/forecastdays/forecastday/fcttext" /home/$USER/forecast.xml | sed -n '1p'
+
+
+
+
+CURRENT CONDITIONS:
+http://api.wunderground.com/api/[Wunderground API Key]/conditions/q/[Zip Code].xml
+
+Current Condition: xmlstarlet sel -t -v "response/current_observation/weather" /home/$USER/current.xml
+Temperature: xmlstarlet sel -t -v "response/current_observation/temp_f" /home/$USER/current.xml
+Relative Humidity: xmlstarlet sel -t -v "response/current_observation/relative_humidity" /home/$USER/current.xml 
+Wind MPH: xmlstarlet sel -t -v "response/current_observation/wind_mph" /home/$USER/current.xml 
+Wind Direction: xmlstarlet sel -t -v "response/current_observation/wind_dir" /home/$USER/current.xml 
+Dewpoint: xmlstarlet sel -t -v "response/current_observation/dewpoint_f" /home/$USER/current.xml 
+Apparent Temp: xmlstarlet sel -t -v "response/current_observation/feelslike_f" /home/$USER/current.xml 
+Visibility: xmlstarlet sel -t -v "response/current_observation/visibility_mi" /home/$USER/current.xml 
+
+Last Updated: xmlstarlet sel -t -v "response/current_observation/observation_time_rfc822" /home/$USER/current.xml | cut -c1-25
+
+
+HOURLY:
+http://api.wunderground.com/api/[Wunderground API Key]/hourly/q/[Zip Code].xml
+
+24 hours! 1p - 24p
+
+
+Time:
+Hour, Military: xmlstarlet sel -t -v "response/hourly_forecast/forecast/FCTTIME/hour_padded" /home/$USER/hourly.xml | sed -n '1p'
+Minute: xmlstarlet sel -t -v "response/hourly_forecast/forecast/FCTTIME/min" /home/$USER/hourly.xml | sed -n '1p'
+AM/PM: xmlstarlet sel -t -v "response/hourly_forecast/forecast/FCTTIME/ampm" /home/$USER/hourly.xml | sed -n '1p'
+Civil Time (12:01 AM): xmlstarlet sel -t -v "response/hourly_forecast/forecast/FCTTIME/civil" /home/$USER/hourly.xml | sed -n '1p'
+Weekday: xmlstarlet sel -t -v "response/hourly_forecast/forecast/FCTTIME/weekday_name" /home/$USER/hourly.xml | sed -n '1p'
+
+
+Temp: xmlstarlet sel -t -v "response/hourly_forecast/forecast/temp/english" /home/$USER/hourly.xml | sed -n '1p'
+Condition: xmlstarlet sel -t -v "response/hourly_forecast/forecast/wx" /home/$USER/hourly.xml | sed -n '1p'
+Humidity: xmlstarlet sel -t -v "response/hourly_forecast/forecast/humidity" /home/$USER/hourly.xml | sed -n '1p'
+Apparent Temp: xmlstarlet sel -t -v "response/hourly_forecast/forecast/feelslike/english" /home/$USER/hourly.xml | sed -n '1p'
+Chance Precipitation: xmlstarlet sel -t -v "response/hourly_forecast/forecast/pop" /home/$USER/hourly.xml | sed -n '1p'
+Cloud Cover: xmlstarlet sel -t -v "response/hourly_forecast/forecast/sky" /home/$USER/hourly.xml | sed -n '1p'
+
+
+
+
+ASTRONOMY:
+http://api.wunderground.com/api/[Wunderground API Key]/astronomy/q/[Zip Code].xml
+
+Sunrise Hour: xmlstarlet sel -t -v "response/moon_phase/sunrise/hour" /home/$USER/astronomy.xml
+Sunrise Minute: xmlstarlet sel -t -v "response/moon_phase/sunrise/minute" /home/$USER/astronomy.xml
+Sunset Hour: xmlstarlet sel -t -v "response/moon_phase/sunset/hour" /home/$USER/astronomy.xml
+Sunset Minute: xmlstarlet sel -t -v "response/moon_phase/sunset/minute" /home/$USER/astronomy.xml
+Moon % Illuminated: xmlstarlet sel -t -v "response/moon_phase/percentIlluminated" /home/$USER/astronomy.xml 
+Moon Age (Days): xmlstarlet sel -t -v "response/moon_phase/ageOfMoon" /home/$USER/astronomy.xml 
+Moonrise Hour: xmlstarlet sel -t -v "response/moon_phase/moonrise/hour" /home/$USER/astronomy.xml 
+Moonrise Minute: xmlstarlet sel -t -v "response/moon_phase/moonrise/minute" /home/$USER/astronomy.xml 
+Moonset Hour: xmlstarlet sel -t -v "response/moon_phase/moonset/hour" /home/$USER/astronomy.xml 
+Moonset Minute: xmlstarlet sel -t -v "response/moon_phase/moonset/minute" /home/$USER/astronomy.xml 
+
+
+according to wunderground:
+age phase
+1   new
+(waxing crescent)
+8   first quarter
+(waxing gibbous)
+16  full
+(waning gibbous)
+23  last quarter
+(waning crescent)
+
+

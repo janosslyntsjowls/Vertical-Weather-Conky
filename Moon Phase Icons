@@ -1,0 +1,15 @@
+Moon Phase Icons
+
+The moon phase icons are provided by Weather Underground.  Per their support forums here:
+
+https://apicommunity.wunderground.com/weatherapi/topics/astronomy_moon_phase
+
+The 30 moon phase icons are downloaded manually. This is done by entering the age of the moon (1 - 30) into the following URL where you see [X].
+
+https://www.wunderground.com/graphics/moonpictsnew/moon[X].gif
+
+So the icon for the 3rd day of the moon's cycle is here:
+
+https://www.wunderground.com/graphics/moonpictsnew/moon3.gif
+
+I put these images in $HOME/Pictures/Icons/MoonIcons

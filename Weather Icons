@@ -1,0 +1,13 @@
+Weather Icons
+
+Weather Icons are available from Weather Underground here:
+
+https://www.wunderground.com/weather/api/d/docs?d=resources/icon-sets
+
+I downloaded mine from Flat Icon (https://www.flaticon.com) and renamed them. The icons must not have spaces in their names, for some reason Conky does not handle that well.
+
+I placed my icons in $HOME/Pictures/Icons/WeatherIcons
+
+The icons you need immediately are in the WeatherIcons folder. If you update your own icons, use the names listed under "Forecast Description Phrases", the first column, without spaces:
+
+https://www.wunderground.com/weather/api/d/docs?d=resources/phrase-glossary
